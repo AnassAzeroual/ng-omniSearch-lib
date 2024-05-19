@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "pack": "rm -rf dist && ng cache clean && ng build ng-omni-search --configuration production && cd dist/ng-omni-search && npm pack && ng s",
+    "build": "ng build ng-omni-search --configuration production && cd dist/ng-omni-search && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -26,7 +27,6 @@
     "@angular-devkit/build-angular": "^16.2.14",
     "@angular/cli": "^16.2.14",
     "@angular/compiler-cli": "^16.2.0",
-    "@types/dom-speech-recognition": "^0.0.4",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

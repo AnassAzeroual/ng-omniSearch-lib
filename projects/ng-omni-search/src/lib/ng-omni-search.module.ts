@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgOmniSearchComponent } from './ng-omni-search.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -8,6 +9,7 @@ import { NgOmniSearchComponent } from './ng-omni-search.component';
     NgOmniSearchComponent
   ],
   imports: [
+    CommonModule
   ],
   exports: [
     NgOmniSearchComponent
