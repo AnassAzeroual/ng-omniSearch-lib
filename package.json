@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "pack": "rm -rf dist && ng cache clean && ng build ng-omni-search --configuration production && cd dist/ng-omni-search && npm pack && ng s",
+    "pack": "rm -rf dist && ng cache clean && ng build ng-omni-search --configuration production && cd dist/ng-omni-search && npm pack && ng s -o",
     "build": "ng build ng-omni-search --configuration production && cd dist/ng-omni-search && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

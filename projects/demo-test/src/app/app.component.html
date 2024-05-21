@@ -1,1 +1,5 @@
-<lib-ng-omni-search></lib-ng-omni-search>
+<select (change)="onChangeLang(select.value)" #select>
+    <option [value]="lang" *ngFor="let lang of languages" > {{lang}} </option>
+  </select>
+
+<lib-ng-omni-search [language]="selectedLanguage"></lib-ng-omni-search>

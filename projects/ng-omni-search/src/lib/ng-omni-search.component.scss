@@ -1,0 +1,29 @@
+.container-speech-section {
+    border: 1px solid rgb(172, 16, 162);
+    border-radius: 23px;
+    max-width: 600px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+
+    input {
+        width: 100%;
+        padding: 4px 18px;
+        border: 0;
+        font-size: 18px;
+        position: relative;
+        outline: 0;
+        font-family: inherit;
+    }
+
+    .mic-off{
+        filter: brightness(0.5) !important;
+    }
+
+    .mic,.img-upload {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+}

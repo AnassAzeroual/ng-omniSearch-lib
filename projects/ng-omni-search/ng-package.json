@@ -3,5 +3,10 @@
   "dest": "../../dist/ng-omni-search",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "./images/img-upload.png",
+    "./images/microphone-on.png",
+    "./images/microphone-off.png"
+  ]
 }
