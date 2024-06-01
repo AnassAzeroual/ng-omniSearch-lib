@@ -15,7 +15,7 @@ export class AppComponent {
     'mk-MK', 'ms-MY', 'nl-NL', 'no-NO', 'pl-PL', 'pt-BR', 'pt-PT', 'ro-RO', 'ru-RU', 'sk-SK',
     'sl-SI', 'sr-RS', 'sv-SE', 'th-TH', 'tr-TR', 'uk-UA', 'vi-VN', 'zh-CN', 'zh-HK', 'zh-TW'
   ];
-  selectedLanguage!: string;
+  selectedLanguage: string = 'en';
 
   onChangeLang(language: string): void {
     // if (this.srv.isListening) {

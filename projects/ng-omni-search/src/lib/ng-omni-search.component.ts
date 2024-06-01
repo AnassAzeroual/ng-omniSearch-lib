@@ -12,7 +12,7 @@ export class NgOmniSearchComponent implements OnInit {
   mic: boolean = false;
   
   @Input('language') set newLanguage(lang: string) {
-    this.selectedLanguage = lang ?? 'en-US';
+    this.selectedLanguage = lang ?? navigator.language;
   }
   
   constructor(
@@ -22,26 +22,21 @@ export class NgOmniSearchComponent implements OnInit {
   ngOnInit(): void {
     const webSpeechReady = this.srv.initialize(this.selectedLanguage);
     if (webSpeechReady) {
-      // this.initRecognition();
+      console.log(this.srv.initialize('en'));
+      
     } else {
       console.log('Your Browser is not supported. Please try Google Chrome.');
     }
   }
 
-  start(): void {
-    if (this.srv.isListening) {
-      this.stop();
-      return;
-    }
-  }
-
-  stop(): void {
-    this.srv.stop();
-  }
-
   record() {
     this.mic = !this.mic;
     console.log(this.mic);
+    if (this.mic) {
+      this.srv.onStart()
+    }else{
+      this.srv.onEnd()
+    }
     
   }
 }
