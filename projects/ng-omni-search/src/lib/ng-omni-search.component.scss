@@ -16,14 +16,87 @@
         font-family: inherit;
     }
 
-    .mic-off{
+    .mic {
+        position: relative;
+
+        .animated1 {
+            display: block;
+            position: absolute;
+            top: -3px;
+            left: -4px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            box-sizing: border-box;
+            border: 2px #d10610 solid;
+            opacity: 0;
+            animation: start-ring 2s linear infinite, start-heartbeat 1s linear infinite;
+            animation-delay: 0s, 1s;
+            animation-direction: normal, reverse;
+            animation-fill-mode: forwards, backwards;
+        }
+    }
+
+    .mic-off {
         filter: brightness(0.5) !important;
     }
 
-    .mic,.img-upload {
+    .mic,
+    .img-upload {
         width: 25px;
         height: 25px;
         cursor: pointer;
     }
 
+    .not-compatible {
+        cursor: not-allowed;
+        color: silver;
+    }
+
+}
+
+
+@keyframes start-ring {
+    0% {
+        opacity: 0;
+        transform: scale(1)
+    }
+
+    12.5% {
+        opacity: 0;
+        transform: scale(.995)
+    }
+
+    16.667% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(1.3)
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: .5
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes start-heartbeat {
+    0% {
+        transform: scale(1)
+    }
+
+    8.333% {
+        transform: scale(.989)
+    }
+
+    16.667% {
+        transform: scale(1)
+    }
 }
