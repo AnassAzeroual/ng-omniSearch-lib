@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgOmniSearchService } from './ng-omni-search.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'lib-ng-omni-search',
@@ -12,25 +12,17 @@ export class NgOmniSearchComponent implements OnInit {
   mic: boolean = false;
   isCompatible: boolean = true;
   message = '';
-  form!: FormGroup;
+  form = new FormControl('lol');
 
   @Input('language') set newLanguage(lang: string) {
     this.selectedLanguage = lang ?? navigator.language;
   }
 
-  constructor(
-    private srv: NgOmniSearchService,
-    private fb:FormBuilder
-  ) {
-    this.form = fb.group({
-      inputRecord: ['']
-    })
-  }
+  constructor(private srv: NgOmniSearchService){}
 
   ngOnInit(): void {
     const webSpeechReady = this.srv.initialize(this.selectedLanguage);
     if (!webSpeechReady) {
-      console.warn('Your Browser is not supported. Please try Google Chrome.');
       this.message = 'Your Browser is not supported. Please try Google Chrome.';
       this.isCompatible = false;
     }else{
@@ -42,13 +34,12 @@ export class NgOmniSearchComponent implements OnInit {
   record() {
     if(!this.isCompatible) return
     this.mic = !this.mic;
-    console.log(this.mic);
     if (this.mic) {
       this.srv.onStart()
     } else {
       this.srv.onEnd()
       this.srv.getResults().subscribe((res: string) => {
-        this.form.get('inputRecord')?.setValue(res);
+        this.form.setValue(res);
         console.log(res)
       })
     }
