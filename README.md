@@ -1,27 +1,63 @@
-# MyLibraryWorkspace
+# ng-omni-search
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+## Table of Contents
 
-## Development server
+1. [Introduction](#introduction)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [API](#api)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Introduction
 
-## Code scaffolding
+ng-omni-search is an Angular library that provides a search component with voice recognition capabilities. It allows users to search for items using text input or voice commands.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+To install ng-omni-search, you need to add it as a dependency to your Angular project.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### npm
+> npm install ng-omni-search
 
-## Running unit tests
+### Importing the module
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Import the `NgOmniSearchModule` in your Angular module:
 
-## Running end-to-end tests
+```typescript
+import { NgOmniSearchModule } from 'ng-omni-search';
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  imports: [
+    // ...
+    NgOmniSearchModule
+  ],
+  // ...
+})
+export class YourModule { }
+```
 
-## Further help
+## Usage
+To use the `ng-omni-search` component, add it to your template:
+```typescript
+<lib-ng-omni-search [language]="'en-US'"></lib-ng-omni-search>
+```
+The `language` input property sets the language for the voice recognition feature. The default value is the user's browser language.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## API
+The ng-omni-search component exposes the following input properties and events:
+
+### Input Properties
+`language`: The language for the voice recognition feature.
+### Output Events
+search: Emitted when the user submits a search query. The event payload is the search query.
+### Contributing
+We welcome contributions to the ng-omni-search library. To contribute, please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Make your changes and commit them.
+Push your changes to your fork.
+Create a pull request.
+### License
+ng-omni-search is licensed under the MIT License. See the LICENSE file for more information.
