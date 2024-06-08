@@ -10,6 +10,7 @@ export class NgOmniSearchService {
   language: string = '';
   isListening = false;
   private resultSubject = new Subject<string>();
+  latestEmittedValue: string = '';
 
   constructor(private ngZone: NgZone) { }
 
@@ -19,7 +20,7 @@ export class NgOmniSearchService {
       console.log('Speech recognition is not supported in Mozilla Firefox');
       return false;
     }
-    if ('SpeechRecognition' in window){
+    if ('SpeechRecognition' in window) {
 
       //? instance of Speech Recognition
       this.recognition = new (<any>window).SpeechRecognition();
@@ -31,7 +32,7 @@ export class NgOmniSearchService {
       this.recognition.lang = language;
       this.onResult();
       return true;
-    }else{
+    } else {
       return false
     }
   }
@@ -48,14 +49,18 @@ export class NgOmniSearchService {
   }
 
   onResult() {
-    this.recognition.onresult = (e:any) => {
-      let interim = '';
-      for (let i = e.resultIndex, len = e.results.length; i < len; i++) {
-        let transcript = e.results[i][0].transcript;
-        interim += transcript;
-        this.resultSubject.next(interim);
-      }
-    };
+    this.ngZone.runOutsideAngular(() => {
+      this.recognition.onresult = (e: any) => {
+        let interim = '';
+        for (let i = e.resultIndex, len = e.results.length; i < len; i++) {
+          interim += e.results[i][0].transcript;
+          if (this.latestEmittedValue !== interim) {
+            this.resultSubject.next(interim);
+          }
+          this.latestEmittedValue = interim;
+        }
+      };
+    })
   }
 
   getResults(): Observable<string> {

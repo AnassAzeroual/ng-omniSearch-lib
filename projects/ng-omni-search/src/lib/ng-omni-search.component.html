@@ -1,5 +1,6 @@
 <div class="container-speech-section">
-  <input type="text" placeholder="search" [formControl]="form">
+<!--  <input type="text" placeholder="search" [formControl]="form">-->
+  <textarea placeholder="search" [formControl]="form"></textarea>
   <div class="mic" [title]="message" [ngClass]="{'mic-off': !mic,'not-compatible': !isCompatible}" (click)="record()">
     <svg class="goxjub" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path fill="#4285f4"

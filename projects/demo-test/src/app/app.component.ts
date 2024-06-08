@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  search = new FormControl('',[Validators.required]);
   title = 'demo-test';
   languages: string[] = [
     'ar-AR', 'bg-BG', 'ca-ES', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-AU', 'en-CA', 'en-GB',
@@ -17,14 +19,12 @@ export class AppComponent {
   ];
   selectedLanguage: string = 'en';
 
-  onChangeLang(language: string): void {
-    // if (this.srv.isListening) {
-    //   this.stop();
-    // }
-    console.log(language);
+  constructor() {
+  }
 
+  onChangeLang(language: string): void {
     this.selectedLanguage = language;
   }
 
-  
+
 }

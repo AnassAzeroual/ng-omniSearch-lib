@@ -1,6 +1,6 @@
 {
   "name": "ng-omni-search",
-  "version": "0.0.1",
+  "version": "0.0.1-beta",
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/core": "*"
