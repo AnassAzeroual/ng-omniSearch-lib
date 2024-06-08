@@ -22,6 +22,7 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
   message = '';
   form = new FormControl('');
   private destroy$ = new Subject<void>();
+  isMicrophoneGranted: boolean = false;
 
   @Input('language') set newLanguage(lang: string) {
     this.selectedLanguage = lang ?? navigator.language;
@@ -33,17 +34,12 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
   };
 
   constructor(private srv: NgOmniSearchService) {
-    this.srv.getResults()
-      .pipe(
-        takeUntil(this.destroy$),
-      )
-      .subscribe(v => {
-        this.form.setValue(v);
-        console.log({ v })
-      })
+    this.getResults();
   }
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
+    this.isMicrophoneGranted = await this.isMicrophoneAllowed();    
     const webSpeechReady = this.srv.initialize(this.selectedLanguage);
     if (!webSpeechReady) {
       this.message = 'Your Browser is not supported. Please try Google Chrome.';
@@ -54,7 +50,18 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
     }
   }
 
-  record() {
+  getResults() {
+    this.srv.getResults()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe(v => {
+        this.form.setValue(v);
+      });
+  }
+
+  async record() {
+    this.isMicrophoneGranted = await this.isMicrophoneAllowed()
     if (!this.isCompatible || this.form.disabled) return
     this.mic = !this.mic;
     if (this.mic) {
@@ -87,6 +94,17 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
       this.form.disable()
     else
       this.form.enable()
+  }
+
+  async isMicrophoneAllowed() {
+    let data:PermissionDescriptor = { name: 'microphone' } as any;
+    try {
+      const permissionStatus = await navigator.permissions.query(data);
+      return permissionStatus.state === 'granted';
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
   }
 
   ngOnDestroy() {

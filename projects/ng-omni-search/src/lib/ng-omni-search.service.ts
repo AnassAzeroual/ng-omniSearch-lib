@@ -41,6 +41,7 @@ export class NgOmniSearchService {
   onStart(): void {
     this.recognition.start();
     this.isListening = true;
+    
   }
 
   onEnd() {
