@@ -34,6 +34,11 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
   };
 
   constructor(private srv: NgOmniSearchService) {
+    this.getResults();
+  }
+
+
+  private async permissions() {
     let data: PermissionDescriptor = { name: 'microphone' } as any;
     navigator.permissions.query(data).then(nav => {
       console.log('nav');
@@ -46,13 +51,13 @@ export class NgOmniSearchComponent implements OnInit, OnDestroy, ControlValueAcc
           this.isMicrophoneGranted = false;
         }
         console.log(this.isMicrophoneGranted);
-      })
-    })
-    this.getResults();
+      });
+    });
+    this.isMicrophoneGranted = (await navigator.permissions.query(data)).state === 'granted'
   }
 
-
   async ngOnInit(): Promise<void> {
+    this.permissions();
     const webSpeechReady = this.srv.initialize(this.selectedLanguage);
     if (!webSpeechReady) {
       this.message = 'Your Browser is not supported. Please try Google Chrome.';
