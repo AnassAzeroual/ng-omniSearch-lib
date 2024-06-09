@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormControl, Validators} from "@angular/forms";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   search = new FormControl('',[Validators.required]);
   title = 'demo-test';
@@ -20,6 +20,17 @@ export class AppComponent {
   selectedLanguage: string = 'en';
 
   constructor() {
+  }
+  
+  ngOnInit(): void {
+    this.search.valueChanges.subscribe(res => {
+      console.log(res);
+    })
+
+    // setInterval(()=> {
+    //   console.log(this.search.value);
+      
+    // },2000)
   }
 
   onChangeLang(language: string): void {

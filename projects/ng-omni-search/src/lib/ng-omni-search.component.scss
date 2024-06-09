@@ -22,15 +22,15 @@
         .animated1 {
             display: block;
             position: absolute;
-            top: -3px;
-            left: -4px;
-            width: 30px;
-            height: 30px;
+            top: -10px;
+            left: -10px;
+            width: 35px;
+            height: 35px;
             border-radius: 100%;
             box-sizing: border-box;
             border: 2px #d10610 solid;
             opacity: 0;
-            animation: start-ring 2s linear infinite, start-heartbeat 1s linear infinite;
+            animation: start-ring 3s linear infinite, start-heartbeat 1s linear infinite;
             animation-delay: 0s, 1s;
             animation-direction: normal, reverse;
             animation-fill-mode: forwards, backwards;
@@ -43,12 +43,11 @@
     }
 
     .mic {
-        width: 25px;
-        height: 19px;
+        width: 19px;
+        height: 15px;
         cursor: pointer;
-        padding: 5px;
         border-radius: 50%;
-        background-color: #AED581;
+        background-color: #E91E63;
     }
 
     .not-compatible {
@@ -56,6 +55,9 @@
         color: silver;
     }
 
+}
+.goxjub{
+    width: 20px;
 }
 
 
@@ -92,14 +94,21 @@
 
 @keyframes start-heartbeat {
     0% {
+        opacity: 0;
         transform: scale(1)
     }
 
-    8.333% {
-        transform: scale(.989)
+    12.5% {
+        opacity: 0;
+        transform: scale(.995)
     }
 
     16.667% {
-        transform: scale(1)
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(1.3)
     }
 }
