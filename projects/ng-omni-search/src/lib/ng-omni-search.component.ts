@@ -1,10 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { Subject, takeUntil } from "rxjs";
 import { NgOmniSearchService } from './ng-omni-search.service';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { combineLatest, Subject, takeLast, takeUntil, withLatestFrom } from "rxjs";
 
 @Component({
   selector: 'ng-omni-search',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './ng-omni-search.component.html',
   styleUrls: ['./ng-omni-search.component.scss'],
   providers: [

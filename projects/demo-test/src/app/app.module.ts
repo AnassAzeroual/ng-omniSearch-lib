@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgOmniSearchComponent } from 'ng-omni-search';
 import { AppComponent } from './app.component';
-import { NgOmniSearchModule } from 'ng-omni-search';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, NgOmniSearchModule,FormsModule, ReactiveFormsModule
+    BrowserModule, NgOmniSearchComponent, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
